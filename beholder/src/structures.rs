@@ -12,17 +12,36 @@
 //! See the License for the specific language governing permissions and
 //! limitations under the License.
 
-mod structures;
+extern crate uuid;
 
-use structures::Message;
-use structures::Endpoint;
 use std::string;
 
-fn main() {
-    
-    let sender = Endpoint::new(string::String::from("Banana"));
-    let recipient_list = vec![Endpoint::new(string::String::from("Monkey"))];
+pub struct Endpoint {
+	pub endpoint_id:		uuid::Uuid,
+	pub service_name:		string::String
+}
 
-	let message: Message = Message::new(&sender, &recipient_list);
+pub struct Message<'a> {
+	pub message_id: 		uuid::Uuid,
+	pub sender: 			&'a Endpoint,
+	pub recipient_list:		&'a Vec<Endpoint>
+}
 
+impl Endpoint {
+	pub fn new(service_name: string::String) -> Endpoint {
+		Endpoint {
+			endpoint_id: 	uuid::Uuid::new_v4(),
+			service_name: 	service_name
+		}
+	}
+}
+
+impl<'a> Message<'a> {
+	pub fn new(sender: &'a Endpoint, recipients: &'a Vec<Endpoint>) -> Message<'a> {
+		Message {
+			message_id: 		uuid::Uuid::new_v4(),
+			sender:				sender,
+			recipient_list:		recipients
+		}
+	}
 }

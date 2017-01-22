@@ -4,3 +4,4 @@ version = "0.1.0"
 authors = ["Rob Snyder <zoltatech@gmail.com>"]
 
 [dependencies]
+uuid = { version = "0.3.1", features = ["use_std", "v4"] }
