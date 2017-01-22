@@ -21,10 +21,10 @@ pub struct Endpoint {
 	pub service_name:		string::String
 }
 
-pub struct Message<'a> {
+pub struct Message {
 	pub message_id: 		uuid::Uuid,
-	pub sender: 			&'a Endpoint,
-	pub recipient_list:		&'a Vec<Endpoint>
+	pub sender: 			Endpoint,
+	pub recipient_list:		Vec<Endpoint>
 }
 
 impl Endpoint {
@@ -36,8 +36,8 @@ impl Endpoint {
 	}
 }
 
-impl<'a> Message<'a> {
-	pub fn new(sender: &'a Endpoint, recipients: &'a Vec<Endpoint>) -> Message<'a> {
+impl<'a> Message {
+	pub fn new(sender: Endpoint, recipients: Vec<Endpoint>) -> Message {
 		Message {
 			message_id: 		uuid::Uuid::new_v4(),
 			sender:				sender,

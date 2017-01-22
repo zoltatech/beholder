@@ -23,6 +23,6 @@ fn main() {
     let sender = Endpoint::new(string::String::from("Banana"));
     let recipient_list = vec![Endpoint::new(string::String::from("Monkey"))];
 
-	let message: Message = Message::new(&sender, &recipient_list);
+	let message: Message = Message::new(sender, recipient_list);
 
 }
