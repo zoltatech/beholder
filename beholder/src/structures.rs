@@ -36,7 +36,7 @@ impl Endpoint {
 	}
 }
 
-impl<'a> Message {
+impl Message {
 	pub fn new(sender: Endpoint, recipients: Vec<Endpoint>) -> Message {
 		Message {
 			message_id: 		uuid::Uuid::new_v4(),
